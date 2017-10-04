@@ -1,0 +1,15 @@
+{
+  "description": "Inspect the value of resources",
+  "supports_noop": true,
+  "input_method": "stdin",
+  "parameters": {
+    "type": {
+      "description": "The type of the resource to retrieve",
+      "type": "String"
+    },
+    "name": {
+      "description": "The name of the resource instance to retrieve",
+      "type": "Optional[String]"
+    }
+  }
+}
