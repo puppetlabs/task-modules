@@ -1,12 +1,55 @@
-h1. Task Modules
+# Task Modules
 
 This repository provides some task modules for getting started with Puppet
-tasks.
+tasks. The tasks in this module can be used both with `bolt task run` on
+the command line and in Puppet Plans. This repository also contains a few
+utility functions for use in plans.
 
-h3. Installation and usage
+## Installation and usage
 
-Clone out this repository and use it's path as the `--modules` path for bolt.
+Clone out this repository and use its path as the `--modules` path for bolt.
 If you want to use modules from the Forge in addition to these modules use
-`puppet module install <module-name> --modulepath=<this repo>` In the future
-when more modules are published to forge this repository may be turned into a
-R10k control repo.
+`puppet module install <module-name> --modulepath=<this repo>`
+
+## Usage
+
+The examples below give some hints on how to use the contents of this
+repo. All examples assume that the `repo` shell variable is set to the
+toplevel directory of the checkout of this repository, and that `nodes`
+contains a comma-separated list of the nodes on which a task or a plan
+should be run.
+
+### Tasks
+
+Each of these tasks can be run with `bolt --modules $repo --nodes $nodes
+task run <task_name>`. You can find out more information about the
+parameters to pass to the tasks from the `init.json` file in each task's
+directory.
+
+| Name | Purpose | Requirements on the target nodes |
+|------|---------|--------------|
+| `install_puppet` | Install the open-source Puppet agent | RedHat- or Debian-derived Linux distro |
+| `package` | Manipulate packages | Puppet must be installed |
+| `resource` | Retrieve the state of resources | Puppet must be installed |
+| `service` | Manipulate services | Puppet must be installed |
+| `minifact` | Retrieve basic node facts | Bash must be installed |
+
+### Plans
+
+The `minifact` module also contains a plan that lists basic node
+information. It is not necessary to have Puppet installed on target nodes
+for this. You can run the plan with
+
+```
+bolt --modules $repo plan run minifact::info nodes=$nodes
+```
+
+### Functions
+
+The following functions are available for use in your plans:
+
+| Function | Purpose |
+|------|---------|
+| `util::print(String $message)` | Print a message on the console |
+| `util::exit(Integer $exitcode = 0)` | Exit bolt immediately |
+| `util::error(String $message, Integer $exitcode = 1)` | Print the message and exit with the given exitcode |
