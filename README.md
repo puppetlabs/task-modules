@@ -36,6 +36,8 @@ directory.
 
 ### Plans
 
+#### minifact
+
 The `minifact` module also contains a plan that lists basic node
 information. It is not necessary to have Puppet installed on target nodes
 for this. You can run the plan with
@@ -43,6 +45,15 @@ for this. You can run the plan with
 ```
 bolt --modules $repo plan run minifact::info nodes=$nodes
 ```
+
+#### canary
+
+The `canary` module contains a plan for running a task on canary nodes and then continuing on all nodes if it succeeds.
+
+```
+bolt --modules $repo plan run canary::random nodes=$nodes task=install_puppet canary_size=3
+```
+
 
 ### Functions
 
