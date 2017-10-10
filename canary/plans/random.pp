@@ -7,18 +7,13 @@ plan canary::random(
   [$canaries, $rest] = canary::random_split($nodes.split(','), $canary_size)
 
   $canr = run_task($task, $canaries, $params)
-  if(!$canr.ok) {
-    util::exit("Deploy to canaries failed: ${canr.error_nodes.names}")
-  } else {
+  if($canr.ok) {
     util::print("Successfully deployed to canaries: ${canr.names}")
+    $restr = run_task($task, $rest, $params)
+  } else {
+    util::print("Deploy to canaries failed: ${canr.error_nodes.names}")
+    $restr = canary::skip($rest)
   }
 
-  $restr = run_task($task, $rest, $params)
-  if(!$restr.ok) {
-    util::print("Failed when deploying rest of nodes: ${restr.error_nodes.names}")
-    restr::error_nodes
-  } else {
-    util::print("Successfully deployed the rest of the nodes")
-    undef
-  }
+  canary::merge($canr, $restr)
 }
