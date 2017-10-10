@@ -32,6 +32,7 @@ directory.
 | `package` | Manipulate packages | Puppet must be installed |
 | `resource` | Retrieve the state of resources | Puppet must be installed |
 | `service` | Manipulate services | Puppet must be installed |
+| `facter_task` | fetch a fact value | Facter must be installed |
 | `minifact` | Retrieve basic node facts | Bash must be installed |
 
 ### Plans
