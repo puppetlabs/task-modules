@@ -66,7 +66,7 @@ The aggregate module contains two plans to run a task and aggregrate the results
 
 
 ```
-bolt --modules $repo plan run canary::random nodes=$nodes task=install_puppet params=<must be passed as json>
+bolt --modules $repo plan run aggregate::count nodes=$nodes task=install_puppet params=<must be passed as json>
 ```
 
 ### Functions
@@ -75,8 +75,9 @@ The following functions are available for use in your plans:
 
 | Function | Purpose |
 |------|---------|
+| `aggregate::count`(ExecutionResult $result) | This returns a hash that for each key in the results counts how many times each value occurs.
+| `aggregate::nodes`(ExecutionResult $result) | This returns a hash that for each key makes a list of nodes that have a given value.
+| `canary::merge`(ExecutionResult $first, ExecutionReuslt $secon) | Merge to execution results prefering nodes from the second.
 | `util::print(String $message)` | Print a message on the console |
 | `util::exit(Integer $exitcode = 0)` | Exit bolt immediately |
 | `util::error(String $message, Integer $exitcode = 1)` | Print the message and exit with the given exitcode |
-| `aggregate::count`(ExecutionResult $result) | This returns a hash that for each key in the results counts how many times each value occurs.
-| `aggregate::nodes`(ExecutionResult $result) | This returns a hash that for each key makes a list of nodes that have a given value.
