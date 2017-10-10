@@ -54,6 +54,20 @@ The `canary` module contains a plan for running a task on canary nodes and then 
 bolt --modules $repo plan run canary::random nodes=$nodes task=install_puppet canary_size=3
 ```
 
+#### aggregate
+
+The aggregate module contains two plans to run a task and aggregrate the results
+
+`aggregate::count`
+: This returns a hash that for each key in the results counts how many times each value occurs.
+
+`aggregate::nodes`
+: This returns a hash that for each key makes a list of nodes that have a given value.
+
+
+```
+bolt --modules $repo plan run canary::random nodes=$nodes task=install_puppet params=<must be passed as json>
+```
 
 ### Functions
 
@@ -64,3 +78,5 @@ The following functions are available for use in your plans:
 | `util::print(String $message)` | Print a message on the console |
 | `util::exit(Integer $exitcode = 0)` | Exit bolt immediately |
 | `util::error(String $message, Integer $exitcode = 1)` | Print the message and exit with the given exitcode |
+| `aggregate::count`(ExecutionResult $result) | This returns a hash that for each key in the results counts how many times each value occurs.
+| `aggregate::nodes`(ExecutionResult $result) | This returns a hash that for each key makes a list of nodes that have a given value.
