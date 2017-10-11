@@ -73,15 +73,15 @@ report_bug() {
 
 # Get command line arguments
 
-if [ -z "$PT_version" ]; then
+if [ -n "$PT_version" ]; then
   version=$PT_version
 fi
 
-if [ -z "$PT_filename" ]; then
+if [ -n "$PT_filename" ]; then
    cmdline_filename=$PT_filename
 fi
 
-if [ -z "$PT_download_dir" ]; then
+if [ -n "$PT_download_dir" ]; then
   cmdline_dl_dir==$PT_download_dir
 fi
 while getopts v:f:d:h opt
