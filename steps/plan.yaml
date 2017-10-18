@@ -1,0 +1,27 @@
+---
+groups:
+  - app-servers
+  - load-balancers
+
+vars:
+  foo: 10
+
+options:
+  on_fail: fail
+
+params:
+  version:
+    type: "String"
+
+steps:
+  - name: stage
+    task: "my_app::deploy"
+    target: $groups.app-servers
+    params:
+      version: $params.version
+  - name: restart
+    task: "my_app::restart"
+    target: $groups.app-servers
+  - name: healtcheck
+    task: "my_app::healthcheck"
+    target: $groups
