@@ -1,15 +1,16 @@
 # Task Modules
 
-This repository provides some task modules for getting started with Puppet
-tasks. The tasks in this module can be used both with `bolt task run` on
-the command line and in Puppet Plans. This repository also contains a few
-utility functions for use in plans.
+This repository provides a control repo with a collection of task modules for
+getting started with Puppet tasks. The tasks in this module can be used both
+with `bolt task run` on the command line and in Puppet Plans. This repository
+also contains a few utility functions for use in plans.
 
 ## Installation and usage
 
-Clone out this repository and use its path as the `--modules` path for bolt.
-If you want to use modules from the Forge in addition to these modules use
-`puppet module install <module-name> --modulepath=<this repo>`
+Configure this repository or a fork as your r10k control repo or clone and run
+`r10k puppetfile install` command.  If using with bolt set the `--modulepath
+$INSTALL_LOCATION/site:$INSTALL_LOCATION/modules` to add these module to the
+modulepath.
 
 ## Usage
 
