@@ -9,7 +9,7 @@
       "description": "Filename for downloaded file",
       "type": "Optional[String]"
     },
-    "version": {
+    "download_dir": {
       "description": "Directory to download file into",
       "type": "Optional[String]"
     }
