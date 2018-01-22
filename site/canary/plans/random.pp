@@ -6,12 +6,11 @@ plan canary::random(
 ) {
   [$canaries, $rest] = canary::random_split($nodes.split(','), $canary_size)
 
-  $canr = run_task($task, $canaries, $params)
+  $catch_params = $params.util::merge({ '_catch_errors' => true})
+  $canr = run_task($task, $canaries, $catch_params)
   if($canr.ok) {
-    util::print("Successfully deployed to canaries: ${canr.names}")
-    $restr = run_task($task, $rest, $params)
+    $restr = run_task($task, $rest, $catch_params)
   } else {
-    util::print("Deploy to canaries failed: ${canr.error_nodes.names}")
     $restr = canary::skip($rest)
   }
 

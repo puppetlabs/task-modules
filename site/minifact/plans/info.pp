@@ -6,9 +6,7 @@
 plan minifact::info(String $nodes) {
   $all = $nodes.split(",")
   $minifacts = run_task('minifact', $all)
-  $minifacts.each |$nd, $out| {
-    util::print("${nd}: ${out[os][name]} ${out[os][release][full]} (${out[os][family]})")
+  $minifacts.map |$r| {
+    "${r.target.name}: ${r[os][name]} ${r[os][release][full]} (${r[os][family]})"
   }
-  # Make it so that bolt does not print a result when we are done
-  undef
 }
