@@ -14,12 +14,12 @@ plan steps::plan(
 
   $final_context = $step_data['steps'].reduce($initial_context) |$context, $step| {
 
-    util::print("Running step: ${step['name']}")
+    notice("Running step: ${step['name']}")
     $params = $context.steps::resolve_params($step['params'])
     $target = $context.steps::resolve($step['target'])
     # Task is not resolvable so we can always list them
     $result = run_task($step['task'], $target, $params)
-    $context.steps::add_result($step['name'], $result)
+    $context.steps::add_result($step['name'], $result, $step['process'])
   }
   $final_context['results']
 }

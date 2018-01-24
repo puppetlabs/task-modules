@@ -1,13 +1,16 @@
 ---
 groups:
-  - app-servers
-  - load-balancers
+  # This should integrate with inventory files
+  - name: app-servers
+  - name: load-balancers
 
+# Vars avoid duplication
 vars:
   foo: 10
 
 options:
-  on_fail: fail
+  # This is the default behavior
+  # on_fail: fail
 
 params:
   version:

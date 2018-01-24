@@ -1,0 +1,18 @@
+---
+# This exists for documentation now
+groups:
+  - name: discoverer
+  - name: echoer
+# documentation only
+params: null
+
+steps:
+  - name: discover
+    task: "minifact"
+    process: first
+    target: '$groups.discoverer'
+  - name: echo
+    task: 'sample::echo'
+    params:
+      message: '$results.discover.os.name'
+    target: '$groups.echoer'
