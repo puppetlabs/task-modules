@@ -2,7 +2,7 @@
   "description": "Install the puppet 5 agent package",
   "parameters": {
     "version": {
-      "description": "The verision of puppet to install",
+      "description": "The version of puppet to install",
       "type": "Optional[String]"
     },
     "filename": {
