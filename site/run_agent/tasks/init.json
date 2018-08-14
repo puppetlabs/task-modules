@@ -1,0 +1,4 @@
+{
+  "description": "Simple task to run the puppet agent that waits if it's already running",
+  "parameters": {}
+}
